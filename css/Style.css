@@ -57,7 +57,7 @@ body {
 
 .container-table th {
   background-color: #2980b9;
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: bold;
 }
 
