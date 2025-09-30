@@ -1,6 +1,78 @@
-*{
- background-color: aqua;
- font-size: 20px;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
- 
+/* Fondo general y tipografía */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f0f4f8, #d9eafc);
+  color: #333;
+  padding: 40px;
+}
+
+/* Contenedor principal */
+.container-main {
+  max-width: 900px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  padding: 30px;
+}
+
+/* Encabezado */
+.container-header header {
+  background-color: #3498db;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Texto introductorio */
+.container-body > p {
+  margin: 20px 0;
+  font-size: 1.1em;
+  color: #2c3e50;
+}
+
+/* Tabla de prácticas */
+.container-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.container-table th,
+.container-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.container-table th {
+  background-color: #2980b9;
+  color: white;
+  font-weight: bold;
+}
+
+.container-table tr:hover {
+  background-color: #f2f9ff;
+}
+
+/* Enlaces */
+a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #21618c;
 }
