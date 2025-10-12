@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/ejerciciostyles.css" rel="stylesheet">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <div class="container-e1">
+        <form method="post" name="formulario" action="">
+            <label for="">Ejercicio 1: Un individuo desea invertir su capital en un banco y desea saber cuánto dinero generará después de un mes si el banco paga a razón de 2% mensual</label>
+            <br>
+            <div class="container-table">
+                <table class="table">
+                    <tr>
+                        <td>Introduzca la cantidad que quiera invertir:</td>
+                        <td>
+                            <input type="text" name="cantidad" id="cantidadi" onkeypress="return validarNumerosConPuntoEspacio(event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Introduce el número de meses (Máx. 18):</td>
+                        <td>
+                            <input type="number" name="meses" id="mesesi" min="1" max="18" value="1">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" value="Calcular Interés" name="enviar" onclick="calcularInteresMensual()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Su saldo total con el interés es de:</td>
+                        <td>
+                            <input type="text" name="sueldoi" id="saldoi" readonly="readonly" class="input_text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" value="Borrar Datos" name="borrar" onclick="limpiarCampos()">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="container-e2">
+        <form method="post" name="formulario2" action="">
+            <label for="">Ejercicio 2: Ventas: 3; Sueldo Base: $13,000; Comisión: $2,000</label>
+            <br>
+            <div class="container-table">
+                <table class="table">
+                    <tr>
+                        <td>Introduce la cantidad de la venta 1:</td>
+                        <td>
+                            <input type="text" name="venta1" id="ventai1" onkeypress="return validarNumerosConPuntoEspacio(event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Introduce la cantidad de la venta 2:</td>
+                        <td>
+                            <input type="text" name="venta2" id="ventai2" onkeypress="return validarNumerosConPuntoEspacio(event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Introduce la cantidad de la venta 3:</td>
+                        <td>
+                            <input type="text" name="venta3" id="ventai3" onkeypress="return validarNumerosConPuntoEspacio(event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" value="Sueldo del Mes" name="enviar" onclick="calcularSueldoConComisiones()">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Su sueldo del mes es de:</td>
+                        <td>
+                            <input type="text" name="sueldoi" id="sueldoi" readonly="readonly" class="input_text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" value="Borrar Datos" name="borrar" onclick="limpiarCampos()">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <br>
+   <div class="container-e3">
+    <form method="post" name="formulario3" action="">
+        <label>Ejercicio 3: 1 Producto; Descuento: 15%</label>
+        <br>
+        <div class="container-table">
+            <table class="table">
+                <tr>
+                    <td>Nombre del Producto: </td>
+                    <td><input type="text" name="producto" id="productoi" onkeypress="return validarLetrasEspacios(event)"></td>
+                </tr>
+                <tr>
+                    <td>Precio del Producto: </td>
+                    <td><input type="text" name="precio" id="precioi" onkeypress="return validarNumerosConPuntoEspacio(event)"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Precio Final" name="enviar" onclick="calcularPrecioConDescuento()"></td>
+                </tr>
+                <tr>
+                    <td>Precio final: </td>
+                    <td><input type="text" name="total" id="totali" readonly="readonly" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Borrar Datos" name="borrar" onclick="limpiarCampos()"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+<br>
+
+<div class="container-e4">
+    <form method="post" name="formulario4" action="">
+        <label>Ejercicio 4</label>
+        <div class="container-table">
+            <table class="table">
+                <tr>
+                    <td>Parcial 1: </td>
+                    <td><input type="number" name="P1" id="p1i" min="0" max="10" value="1"></td>
+                </tr>
+                <tr>
+                    <td>Parcial 2: </td>
+                    <td><input type="number" name="P2" id="p2i" min="0" max="10" value="1"></td>
+                </tr>
+                <tr>
+                    <td>Parcial 3: </td>
+                    <td><input type="number" name="P3" id="p3i" min="0" max="10" value="1"></td>
+                </tr>
+                <tr>
+                    <td>Trabajo Final: </td>
+                    <td><input type="number" name="TF1" id="tfi" min="0" max="10" value="1"></td>
+                </tr>
+                <tr>
+                    <td>Examen: </td>
+                    <td><input type="number" name="E1" id="exi" min="0" max="10" value="1"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Calificación Final" name="enviar" onclick="calcularCalificacionFinal()"></td>
+                </tr>
+                <tr>
+                    <td>Calificación Final: </td>
+                    <td><input type="text" name="cf" id="cfi" readonly="readonly" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Borrar Datos" name="borrar" onclick="limpiarCampos()"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+<br>
+
+<div class="container-e5">
+    <form method="post" name="formulario5" action="">
+        <label>Ejercicio 5</label>
+        <br>
+        <div class="container-table">
+            <table class="table">
+                <tr>
+                    <td>Cantidad de Hombres: </td>
+                    <td><input type="text" name="h" id="hi" onkeypress="return validarNumerosSinDecimales(event)"></td>
+                </tr>
+                <tr>
+                    <td>Cantidad de Mujeres:</td>
+                    <td><input type="text" name="m" id="mi" onkeypress="return validarNumerosSinDecimales(event)"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Porcentaje de Cada Uno" name="enviar" onclick="calcularPorcentajeGenero()"></td>
+                </tr>
+                <tr>
+                    <td>Porcentaje de Hombres: </td>
+                    <td><input type="text" name="porcentaje" id="porcentaje1i" readonly="readonly" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td>Porcentaje de Mujeres: </td>
+                    <td><input type="text" name="porcentaje" id="porcentaje2i" readonly="readonly" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Borrar Datos" name="borrar" onclick="limpiarCampos()"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+<br>
+
+<div class="container-e6">
+    <form method="post" name="formulario6" action="">
+        <label>Ejercicio 6</label>
+        <br>
+        <div class="container-table">
+            <table class="table">
+                <tr>
+                    <td>Selecciona una fecha (Debe ser pasada): </td>
+                    <td><input type="date" id="fechai"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Calcular edad" onclick="calcularEdadDesdeFecha()"></td>
+                </tr>
+                <tr>
+                    <td>Edad: </td>
+                    <td><input type="text" name="edad" id="edadi" readonly="readonly" class="input_text"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Borrar Datos" name="borrar" onclick="limpiarCampos()"></td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>

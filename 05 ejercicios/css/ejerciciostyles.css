@@ -1,0 +1,83 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fondo general */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #fce4ec);
+  padding: 20px;
+  color: #333;
+}
+
+/* Contenedores por ejercicio */
+.container-e1,
+.container-e2,
+.container-e3,
+.container-e4,
+.container-e5 {
+  background-color: #ffffff;
+  border: 2px solid #90caf9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Etiquetas */
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+  color: #1976d2;
+}
+
+/* Tablas */
+.container-table {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.input_text {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  color: #424242;
+}
+
+/* Botones */
+input[type="button"] {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+input[type="button"]:hover {
+  background-color: #1565c0;
+}
