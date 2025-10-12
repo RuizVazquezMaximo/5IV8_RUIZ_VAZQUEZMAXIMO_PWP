@@ -8,9 +8,9 @@
 /* Fondo general */
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #e0f7fa, #fce4ec);
+  background-color: #f0f4f8;
   padding: 20px;
-  color: #333;
+  color: #2c3e50;
 }
 
 /* Contenedores por ejercicio */
@@ -18,13 +18,14 @@ body {
 .container-e2,
 .container-e3,
 .container-e4,
-.container-e5 {
+.container-e5,
+.container-e6 {
   background-color: #ffffff;
-  border: 2px solid #90caf9;
+  border: 2px solid #3498db;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 30px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
 /* Etiquetas */
@@ -32,7 +33,7 @@ label {
   font-weight: bold;
   display: block;
   margin-bottom: 10px;
-  color: #1976d2;
+  color: #3498db;
 }
 
 /* Tablas */
@@ -52,23 +53,26 @@ label {
 
 /* Inputs */
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="date"] {
   width: 100%;
   padding: 8px;
   border: 1px solid #bdbdbd;
   border-radius: 5px;
   font-size: 1em;
+  background-color: #ffffff;
+  color: #2c3e50;
 }
 
 .input_text {
-  background-color: #f5f5f5;
+  background-color: #eaf0f6;
   font-weight: bold;
-  color: #424242;
+  color: #2c3e50;
 }
 
 /* Botones */
 input[type="button"] {
-  background-color: #1976d2;
+  background-color: #3498db;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -79,5 +83,5 @@ input[type="button"] {
 }
 
 input[type="button"]:hover {
-  background-color: #1565c0;
+  background-color: #2c3e50;
 }
