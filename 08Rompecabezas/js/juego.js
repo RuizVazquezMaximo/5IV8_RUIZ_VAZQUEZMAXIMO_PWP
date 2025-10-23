@@ -8,7 +8,7 @@ var movimientos = [
 
 ]
 
-//Vamos  crear una matriz para saber las posiciones del rompecabezas
+//Vamos crear una matriz para saber las posiciones del rompecabezas
 
 var rompe = [
     [1,2,3],
@@ -32,7 +32,7 @@ var columnaVacia = 2;
 //Necesitamos ahora si una funcion que se encargue de mostrar las instrucciones
 
 function mostrarInstrucciones(instrucciones){
-    for(var i=0; i<instrucciones.length; i++){
+    for(var i=0; i < instrucciones.length; i++){
         mostrarInstruccionesLista(instrucciones[i], "lista-instrucciones");
     }
 }
@@ -45,148 +45,141 @@ function mostrarInstruccionesLista(instruccion, idLista){
     li.textContent = instruccion;
     ul.appendChild(li);
 }
-
 //Mandamos traer a la funcion 
 mostrarInstrucciones(instrucciones);
 
-function iniciar(){
-    //Mezclar las piezas 
-    //Capturar el ultimo movimiento
-}
-
-function checarSigano(){
-    for(var j = 0; 1 < rompe.length ; i++){
+//Vamos a crear una función para saber que ganó
+function checarSiGano(){
+    for(var i = 0; i < rompe.length; i++){
         for(var j = 0; j < rompe[i].length; j++){
             var rompeActual = rompe[i][j];
             if(rompeActual !== rompeCorrecta[i][j]){
-                return false
+                return false;
             }
         }
     }
     return true;
 }
 
-//mostrar si gano 
-function mostrarGanador(){
-    if(checarSigano()){
-        alert("Ganaste GG")
+//Mostrar en HTML si ganó
+function mostrarCartelGanador(){
+    if(checarSiGano()){
+        alert("Felicidades, Ganaste");
     }
-    return false;
-
 }
-/*
-necesitamos un afuncion que intercambie la pocicion de la pieza vacio por otra pieza tenemos que hacer uso de :
-arreglo [][]  = posicion[][] 
-//intercambia 
-posicion[][] = arregglo[][]
-posicion[][] = arreglo[][]
-*/
 
+/*
+    Necesitamos una función que se encargue de poder intercambiar las posiciones de la pieza vacía vs cualquiera;
+    para esto tenemos que hacer uso de:
+    arreglo[][] = posicion[][]
+    //intercambiar
+    posicion[][] = arreglo[][]
+*/
 function intercambiarPosicionesRompe(filaPos1, columnaPos1, filaPos2, columnaPos2){
     var temp = rompe[filaPos1][columnaPos1];
     rompe[filaPos1][columnaPos1] = rompe[filaPos2][columnaPos2];
     rompe[filaPos2][columnaPos2] = temp;
 }
 
-//funcion para ver pieza vacia
-function actualizarpiezavacia(nuevaFila,nuevaColumna){
-    filaVacia= nuevaFila
-    culumaVacia = nuevaColumna
+//Crear una función que se encargue de saber dónde está la pieza vacía
+function actualizarPosicionVacia(nuevaFila, nuevaColumna){
+    filaVacia = nuevaFila;
+    columnaVacia = nuevaColumna;
 }
 
-function pocicionValida(fila,columa){
-    return(fila>= 0 && fila <= 2 && columa >= 0 && columa <=2)
+//necesitamos también limityar las posiciones del rompecabezas
+function posicionValida(fila, columna){
+    return (fila >= 0 && fila <= 2 && columna >= 0 && columna <= 2)
 }
-var codigodeDireccion = {
+
+//Debemos crear una función que se encargue del movimiento detectando el evento de las flechas de navegación.
+
+//Debemos crear una matriz de identificación de mov
+//Arriba 38, abajo 40, izquierda 37, derecha 38
+var codigosDireccion = {
     IZQUIERDA : 37,
     ARRIBA : 38,
     DERECHA : 39,
     ABAJO : 40
+}; //ES FORMATO JSON
 
+function moverEnDireccion(direccion){
+    var nuevaFilapszVacia;
+    var nuevaColumnapszVacia;
 
-}; //FORMATO JSON
-//crear una funcion para detectar el evento de las flechas 
-// debemos crear una matriz para los mov
-//arriba 38 abajo 40 
-function moverDireccion(Direccion){
-    var nuevaFilaPiezaVacia;
-    var nuevaColumnaPiezaVacia;
-    // si se mueve
-    if (Direccion === codigodeDireccion.ABAJO){
-        nuevaFilaPiezaVacia = filaVacia +1;
-        nuevaColumnaPiezaVacia = columnaVacia;
-    } else if (Direccion=== codigodeDireccion.ARRIBA){
-        nuevaFilaPiezaVacia = filaVacia -1;
-        nuevaColumnaPiezaVacia = columnaVacia;
-
-    }else if (Direccion=== codigodeDireccion.IZQUIERDA){
-        nuevaFilaPiezaVacia = filaVacia ;
-        nuevaColumnaPiezaVacia = columnaVacia +1 ;
-
-    }else if (Direccion=== codigodeDireccion.ARRIBA){
-        nuevaFilaPiezaVacia = filaVacia;
-        nuevaColumnaPiezaVacia = columnaVacia -1 ;
-
+    //saber si se mueve
+    if(direccion === codigosDireccion.ABAJO){
+        nuevaFilapszVacia = filaVacia + 1;
+        nuevaColumnapszVacia = columnaVacia;
+    } else if(direccion === codigosDireccion.ARRIBA){
+        nuevaFilapszVacia = filaVacia - 1;
+        nuevaColumnapszVacia = columnaVacia;
+    }else if(direccion === codigosDireccion.DERECHA){
+        nuevaFilapszVacia = filaVacia;
+        nuevaColumnapszVacia = columnaVacia + 1;
+    }else if(direccion === codigosDireccion.IZQUIERDA){
+        nuevaFilapszVacia = filaVacia;
+        nuevaColumnapszVacia = columnaVacia - 1;
     }
-// solo mando a llamar a que la pocicion se a valida 
-if( pocicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)){
-    //funcion intercambiar posiciones
-    intercambiaPosicion(filaVacia,culumaVacia,nuevaFilaPiezaVacia,nuevaColumnaPiezaVacia);
-    actualizarpiezavacia(nuevaFilaPiezaVacia,nuevaColumnaPiezaVacia);
 
-    agregarUltimoMovimiento(Direccion)
-
-    function intercambiaPosicion(fila1,columna1,fila2, columna2){
-        var pieza1 = rompe [filaP1 , columna1];
-        var pieza2 = rompe [fila2, columnaP2];
-    
-        //intercambio ya es parte de los frames 
-    intercambiaPosicionRompe(fila1,columna1,fila2,columna2)
-    //Para html
-    intercambiaPosicionDOM('pieza'+pieza1, 'pieza'+pieza2);
-    
+    //Solo mando a llamar a que la posición sea válida
+    if(posicionValida(nuevaFilapszVacia, nuevaColumnapszVacia)){
+        //Tengo que hacer una función que se encargue de intercambiar las posiciones
+        intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilapszVacia, nuevaColumnapszVacia);
+        actualizarPosicionVacia(nuevaFilapszVacia, nuevaColumnapszVacia);
+        //tengo que guardar el último movimiento
+        agregarUltimoMovimiento(direccion);
     }
-}
+
 }
 
-function intercambiaPosicionDOM(idPieza1, idPieza2){
+function intercambiarPosiciones(fila1, columna1, fila2, columna2){
+    var psz1 = rompe[fila1][columna1];
+    var psz2 = rompe[fila2][columna2];
+
+    //Intercambio ya debe de ser por parte de los frames y el html
+    intercambiarPosicionesRompe(fila1, columna1, fila2, columna2);
+    //para el html
+    intercambiarPosicionesDOM('pieza' + psz1, 'pieza' + psz2);
+}
+
+function intercambiarPosicionesDOM(idPieza1, idPieza2){
     var pieza1 = document.getElementById(idPieza1);
-    var pieza1 = document.getElementById(idPieza2);
+    var pieza2 = document.getElementById(idPieza2);
 
-    var padre = elemntoPieza1.parentNode;
+    //vamos a clonarlas
+    var padrePieza1 = pieza1.parentNode;
+    var padrePieza2 = pieza2.parentNode;
 
-    var CloneElemento1 = elementoPieza1.cloneNode(true);
-    var CloneElemento2 = elementoPieza2.cloneNode(true);
+    var clon1 = pieza1.cloneNode(true);
+    var clon2 = pieza2.cloneNode(true);
 
-    padre.replaceClild(CloneElemento1,elementoPieza2);
-    padre.replaceClild(CloneElemento2,elementoPieza1);
-
+    padrePieza1.replaceChild(clon2, pieza1);
+    padrePieza2.replaceChild(clon1, pieza2);
 }
 
-//actualizar movimientos DOM
-function actualizarUltimoMovimiento(Direccion){
+//Debo de actualizar los elementos en el DOM
+function agregarUltimoMovimiento(direccion){
     var ultimoMovimiento = document.getElementById("flecha");
-    switch(Direccion){
-        case codigodeDireccion.ARRIBA:
-            ultimoMovimiento.textContent= "↑";
+    switch(direccion){
+        case codigosDireccion.ARRIBA:
+            ultimoMovimiento.textContent = "↑";
             break;
-            case codigodeDireccion.ABAJO:
-            ultimoMovimiento.textContent= "↓";
+        case codigosDireccion.ABAJO:
+            ultimoMovimiento.textContent = "↓";
             break;
-            case codigodeDireccion.DERECHA:
-            ultimoMovimiento.textContent= "→";
+        case codigosDireccion.DERECHA:
+            ultimoMovimiento.textContent = "→";
             break;
-            case codigodeDireccion.IZQUIERDA:
-            ultimoMovimiento.textContent= "←";
+        case codigosDireccion.IZQUIERDA:
+            ultimoMovimiento.textContent = "←";
             break;
     }
 }
-
-//poder mezclar todar las piezas 
 
 function mezclarPiezas(veces){
     if(veces <= 0){
-        alert("no se puede");
+        alert("Así no se puede");
         return;
     }
 
@@ -199,7 +192,7 @@ function mezclarPiezas(veces){
     }, 50);
 }
 
-
+//Necesitamos saber qué teclas se están oprimiendo
 function capturarTeclas(){
     document.body.onkeydown = (function(evento){
         if(evento.which === codigosDireccion.ARRIBA ||
@@ -219,12 +212,10 @@ function capturarTeclas(){
     });
 }
 
+
 function iniciar(){
     mezclarPiezas(30);
-    capturaTeclas();
-
+    capturarTeclas();
 }
 
 iniciar();
-
-mostrarInstrucciones(instrucciones);
