@@ -156,7 +156,7 @@ function intercambiaPosicionDOM(idPieza1, idPieza2){
     var padre = elemntoPieza1.parentNode;
 
     var CloneElemento1 = elementoPieza1.cloneNode(true);
-    var ClobeElemnto2 = elementoPieza2.cloneNode(true);
+    var CloneElemento2 = elementoPieza2.cloneNode(true);
 
     padre.replaceClild(CloneElemento1,elementoPieza2);
     padre.replaceClild(CloneElemento2,elementoPieza1);
