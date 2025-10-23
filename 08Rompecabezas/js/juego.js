@@ -82,7 +82,7 @@ posicion[][] = arregglo[][]
 posicion[][] = arreglo[][]
 */
 
-function intercambiaPosicion(filaPos1,columnaPos1,filaPos2, columnaPos2){
+function intercambiaPosicionRompe(filaPos1,columnaPos1,filaPos2, columnaPos2){
     var pos1 = rompe [filaPos1 , columnaPos1];
     var pos2 = rompe [filaPos2, columnaPos2];
 
@@ -92,3 +92,138 @@ function intercambiaPosicion(filaPos1,columnaPos1,filaPos2, columnaPos2){
     rompe[filaPos2,columnaPos2];
 
 }
+//funcion para ver pieza vacia
+function actualizarpiezavacia(nuevaFila,nuevaColumna){
+    filaVacia= nuevaFila
+    culumaVacia = nuevaColumna
+}
+
+function pocicionValida(fila,columa){
+    return(fila>= 0 && fila <= 2 && columa >= 0 && columa <=2)
+}
+var codigodeDireccion = {
+    IZQUIERDA : 37,
+    ARRIBA : 38,
+    DERECHA : 39,
+    ABAJO : 40
+
+
+}; //FORMATO JSON
+//crear una funcion para detectar el evento de las flechas 
+// debemos crear una matriz para los mov
+//arriba 38 abajo 40 
+function moverDireccion(Direccion){
+    var nuevaFilaPiezaVacia;
+    var nuevaColumnaPiezaVacia;
+    // si se mueve
+    if (Direccion === codigodeDireccion.ABAJO){
+        nuevaFilaPiezaVacia = filaVacia +1;
+        nuevaColumnaPiezaVacia = columnaVacia;
+    } else if (Direccion=== codigodeDireccion.ARRIBA){
+        nuevaFilaPiezaVacia = filaVacia -1;
+        nuevaColumnaPiezaVacia = columnaVacia;
+
+    }else if (Direccion=== codigodeDireccion.IZQUIERDA){
+        nuevaFilaPiezaVacia = filaVacia ;
+        nuevaColumnaPiezaVacia = columnaVacia +1 ;
+
+    }else if (Direccion=== codigodeDireccion.ARRIBA){
+        nuevaFilaPiezaVacia = filaVacia;
+        nuevaColumnaPiezaVacia = columnaVacia -1 ;
+
+    }
+// solo mando a llamar a que la pocicion se a valida 
+if( pocicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)){
+    //funcion intercambiar posiciones
+    intercambiaPosicion(filaVacia,culumaVacia,nuevaFilaPiezaVacia,nuevaColumnaPiezaVacia);
+    actualizarpiezavacia(nuevaFilaPiezaVacia,nuevaColumnaPiezaVacia);
+
+    agregarUltimoMovimiento(Direccion)
+
+    function intercambiaPosicion(fila1,columna1,fila2, columna2){
+        var pieza1 = rompe [filaP1 , columna1];
+        var pieza2 = rompe [fila2, columnaP2];
+    
+        //intercambio ya es parte de los frames 
+    intercambiaPosicionRompe(fila1,columna1,fila2,columna2)
+    //Para html
+    intercambiaPosicionDOM('pieza'+pieza1, 'pieza'+pieza2);
+    
+    }
+}
+}
+
+function intercambiaPosicionDOM(idPieza1, idPieza2){
+    var pieza1 = document.getElementById(idPieza1);
+    var pieza1 = document.getElementById(idPieza2);
+
+    var padre = elemntoPieza1.parentNode;
+
+    var CloneElemento1 = elementoPieza1.cloneNode(true);
+    var ClobeElemnto2 = elementoPieza2.cloneNode(true);
+
+    padre.replaceClild(CloneElemento1,elementoPieza2);
+    padre.replaceClild(CloneElemento2,elementoPieza1);
+
+}
+
+//actualizar movimientos DOM
+function actualizarUltimoMovimiento(Direccion){
+    var ultimoMovimiento = document.getElementById("flecha");
+    switch(Direccion){
+        case codigodeDireccion.ARRIBA:
+            ultimoMovimiento.textContent= "↑";
+            break;
+            case codigodeDireccion.ABAJO:
+            ultimoMovimiento.textContent= "↓";
+            break;
+            case codigodeDireccion.DERECHA:
+            ultimoMovimiento.textContent= "→";
+            break;
+            case codigodeDireccion.IZQUIERDA:
+            ultimoMovimiento.textContent= "←";
+            break;
+    }
+}
+
+//poder mezclar todar las piezas 
+
+function mezclarPiezas(veces){
+    if(veces <= 0){
+        alert("no se puede")
+    return;
+}
+    var Direccion= Direcciones[Math.floor(Math.random()*Direcciones.length)];
+    moverEnDireccion(Direccion);
+    setTimeout(function(){
+        mezclarPiezas(veces -1);
+    }, 100);
+}
+
+function capturaTeclas(){
+    document.body.onkeydown = (function(evento){
+        if(evento.which === codigodeDireccion.ARRIBA || 
+             evento.which === codigodeDireccion.ABAJO ||
+             evento.which === codigodeDireccion.IZQUIERDA||
+             evento.which === codigodeDireccion.DERECHA){
+                moverDireccion(evento.which);
+                var gano = checarSigano()
+                if(gano){
+                    setTimeout(function(){
+                        mostrarGanador();
+                    },500);
+                   
+                }
+                evento.preventDefault();
+             };
+    }) ;
+}
+function iniciar(){
+    mezclarPiezas(30);
+    capturaTeclas();
+
+}
+
+iniciar();
+
+mostrarInstrucciones(instrucciones);

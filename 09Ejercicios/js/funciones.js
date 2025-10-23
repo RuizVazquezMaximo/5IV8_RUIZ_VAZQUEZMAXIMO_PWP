@@ -60,3 +60,5 @@ function ejercicio4() {
   const utilidad = sueldo * porcentaje;
   document.getElementById("e4-res").textContent = "Utilidad anual: $" + utilidad.toFixed(2);
 }
+
+
