@@ -190,34 +190,39 @@ function actualizarUltimoMovimiento(Direccion){
 
 function mezclarPiezas(veces){
     if(veces <= 0){
-        alert("no se puede")
-    return;
-}
-    var Direccion= Direcciones[Math.floor(Math.random()*Direcciones.length)];
-    moverEnDireccion(Direccion);
+        alert("no se puede");
+        return;
+    }
+
+    var direcciones = [codigosDireccion.ABAJO, codigosDireccion.ARRIBA, codigosDireccion.DERECHA, codigosDireccion.IZQUIERDA];
+    var direccion = direcciones[Math.floor(Math.random() * direcciones.length)];
+    moverEnDireccion(direccion);
+
     setTimeout(function(){
-        mezclarPiezas(veces -1);
-    }, 100);
+        mezclarPiezas(veces - 1);
+    }, 50);
 }
 
-function capturaTeclas(){
+
+function capturarTeclas(){
     document.body.onkeydown = (function(evento){
-        if(evento.which === codigodeDireccion.ARRIBA || 
-             evento.which === codigodeDireccion.ABAJO ||
-             evento.which === codigodeDireccion.IZQUIERDA||
-             evento.which === codigodeDireccion.DERECHA){
-                moverDireccion(evento.which);
-                var gano = checarSigano()
-                if(gano){
-                    setTimeout(function(){
-                        mostrarGanador();
-                    },500);
-                   
-                }
-                evento.preventDefault();
-             };
-    }) ;
+        if(evento.which === codigosDireccion.ARRIBA ||
+                         evento.which === codigosDireccion.ABAJO ||
+                         evento.which === codigosDireccion.DERECHA ||
+                         evento.which === codigosDireccion.IZQUIERDA){
+            moverEnDireccion(evento.which);
+            //saber si gane
+            var gano = checarSiGano();
+            if(gano){
+                setTimeout(function(){
+                    mostrarCartelGanador();
+                }, 500);
+            }
+            evento.preventDefault();
+        }
+    });
 }
+
 function iniciar(){
     mezclarPiezas(30);
     capturaTeclas();
