@@ -82,16 +82,12 @@ posicion[][] = arregglo[][]
 posicion[][] = arreglo[][]
 */
 
-function intercambiaPosicionRompe(filaPos1,columnaPos1,filaPos2, columnaPos2){
-    var pos1 = rompe [filaPos1 , columnaPos1];
-    var pos2 = rompe [filaPos2, columnaPos2];
-
-    //intercambio
-
-    rompe[filaPos1,columnaPos1];
-    rompe[filaPos2,columnaPos2];
-
+function intercambiarPosicionesRompe(filaPos1, columnaPos1, filaPos2, columnaPos2){
+    var temp = rompe[filaPos1][columnaPos1];
+    rompe[filaPos1][columnaPos1] = rompe[filaPos2][columnaPos2];
+    rompe[filaPos2][columnaPos2] = temp;
 }
+
 //funcion para ver pieza vacia
 function actualizarpiezavacia(nuevaFila,nuevaColumna){
     filaVacia= nuevaFila
@@ -160,7 +156,7 @@ function intercambiaPosicionDOM(idPieza1, idPieza2){
     var padre = elemntoPieza1.parentNode;
 
     var CloneElemento1 = elementoPieza1.cloneNode(true);
-    var ClobeElemnto2 = elementoPieza2.cloneNode(true);
+    var CloneElemento2 = elementoPieza2.cloneNode(true);
 
     padre.replaceClild(CloneElemento1,elementoPieza2);
     padre.replaceClild(CloneElemento2,elementoPieza1);
@@ -190,34 +186,39 @@ function actualizarUltimoMovimiento(Direccion){
 
 function mezclarPiezas(veces){
     if(veces <= 0){
-        alert("no se puede")
-    return;
-}
-    var Direccion= Direcciones[Math.floor(Math.random()*Direcciones.length)];
-    moverEnDireccion(Direccion);
+        alert("no se puede");
+        return;
+    }
+
+    var direcciones = [codigosDireccion.ABAJO, codigosDireccion.ARRIBA, codigosDireccion.DERECHA, codigosDireccion.IZQUIERDA];
+    var direccion = direcciones[Math.floor(Math.random() * direcciones.length)];
+    moverEnDireccion(direccion);
+
     setTimeout(function(){
-        mezclarPiezas(veces -1);
-    }, 100);
+        mezclarPiezas(veces - 1);
+    }, 50);
 }
 
-function capturaTeclas(){
+
+function capturarTeclas(){
     document.body.onkeydown = (function(evento){
-        if(evento.which === codigodeDireccion.ARRIBA || 
-             evento.which === codigodeDireccion.ABAJO ||
-             evento.which === codigodeDireccion.IZQUIERDA||
-             evento.which === codigodeDireccion.DERECHA){
-                moverDireccion(evento.which);
-                var gano = checarSigano()
-                if(gano){
-                    setTimeout(function(){
-                        mostrarGanador();
-                    },500);
-                   
-                }
-                evento.preventDefault();
-             };
-    }) ;
+        if(evento.which === codigosDireccion.ARRIBA ||
+                         evento.which === codigosDireccion.ABAJO ||
+                         evento.which === codigosDireccion.DERECHA ||
+                         evento.which === codigosDireccion.IZQUIERDA){
+            moverEnDireccion(evento.which);
+            //saber si gane
+            var gano = checarSiGano();
+            if(gano){
+                setTimeout(function(){
+                    mostrarCartelGanador();
+                }, 500);
+            }
+            evento.preventDefault();
+        }
+    });
 }
+
 function iniciar(){
     mezclarPiezas(30);
     capturaTeclas();
