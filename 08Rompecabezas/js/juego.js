@@ -82,16 +82,12 @@ posicion[][] = arregglo[][]
 posicion[][] = arreglo[][]
 */
 
-function intercambiaPosicionRompe(filaPos1,columnaPos1,filaPos2, columnaPos2){
-    var pos1 = rompe [filaPos1 , columnaPos1];
-    var pos2 = rompe [filaPos2, columnaPos2];
-
-    //intercambio
-
-    rompe[filaPos1,columnaPos1];
-    rompe[filaPos2,columnaPos2];
-
+function intercambiarPosicionesRompe(filaPos1, columnaPos1, filaPos2, columnaPos2){
+    var temp = rompe[filaPos1][columnaPos1];
+    rompe[filaPos1][columnaPos1] = rompe[filaPos2][columnaPos2];
+    rompe[filaPos2][columnaPos2] = temp;
 }
+
 //funcion para ver pieza vacia
 function actualizarpiezavacia(nuevaFila,nuevaColumna){
     filaVacia= nuevaFila
